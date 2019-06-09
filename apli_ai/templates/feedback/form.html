@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block Title %}
+Feedback
+{% endblock %}
+
+{% block Stylesheet %}
+<link rel="stylesheet" type="text/css" href="{% static 'simplemde.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+{% block Content %}
+<!--ERROR MESSAGES-->
+<div class="container">
+    {% for message in messages %}
+        {% if 'error' in message.tags %}
+        <div class="text-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            {{message}}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+<!-- FEEDBACK FORM -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+        {{form.username.label_tag}}
+        
+        <div class="text-danger">
+        {% for error in form.username.errors %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {{error|escape}}
+        {% endfor %}
+        </div>
+
+        <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+        </div>
+            {% render_field form.username class="form-control" %}
+
+            <small class="form-text text-muted">
+            {{ form.username.help_text }}
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{form.email.label_tag}}
+        
+        <div class="text-danger">
+        {% for error in form.email.errors %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {{error|escape}}
+        {% endfor %}
+        </div>
+        
+        <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        </div>
+        {% render_field form.email class="form-control" %}
+
+        <small class="form-text text-muted">
+        {{ form.email.help_text }}
+        </small>
+        </div>
+    </div>
+
+
+   <div class="form-group">
+        {{form.subject.label_tag}}
+        
+        <div class="text-danger">
+        {% for error in form.subject.errors %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {{error|escape}}
+        {% endfor %}
+        </div>
+        
+        <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-question-circle"></i></span>
+        </div>
+        {% render_field form.subject class="form-control" %}
+        
+        <small class="form-text text-muted">
+        {{ form.email.help_text }}
+        </small>
+        </div>
+    </div>
+
+        {{form.message.label_tag}}
+        <div class="text-danger">
+        
+        {% for error in form.message.errors %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {{error|escape}}
+        {% endfor %}
+        </div>
+        {% render_field form.message %}<br>
+
+    <div class="image_input">
+        {{form.image.label_tag}}
+    
+        <div class="text-danger">
+        {% for error in form.image.errors %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {{error|escape}}
+        {% endfor %}
+        </div>
+        
+        {% render_field form.image class="form-control" %}
+        <small class="form-text text-muted">
+        {{ form.image.help_text }}
+        </small>
+    </div>
+
+    <div class="form-check form-check-inline my-2">
+      <input class="form-check-input" name="reCAPTCHA" type="checkbox" id="reCAPTCHA" value="option3">
+      <label class="form-check-label" for="reCAPTCHA">I am not a robot</label>
+    </div>
+
+  <button class="btn btn-primary btn-block" type="submit">Submit</button>
+
+  </form>
+</div>
+{% endblock %}
+
+{% block Script %}
+    <script src="{% static 'simplemde.js' %}"></script>
+
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap4.js"></script>
+
+  <!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+  <!-- Initialize Quill editor -->
+  <script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

@@ -28,7 +28,7 @@ On the back-end side, the form,
 
 Along with this, App also has comprehensive automated tests.
 
-All the settings regarding the Emails and summernote editor are available in settings.
-[settings][settings]
+All the settings regarding the Emails and summernote editor are available in
+[settings][settings].
 
 [settings]: https://github.com/manthanchauhan/apli-feedback-form/blob/3493099f839a7de4f8cdeb78fcc985ca896edc63/apli_ai/apli_ai/settings.py#L131-L159

@@ -10,7 +10,9 @@ The form has 5 fields,
 4. message (Markdown)
 5. image (Optional)
 
-On the front-end side, the form,
+On the [front-end][front-end] side, the form,
+
+[front-end]: https://github.com/manthanchauhan/apli-feedback-form/tree/master/apli_ai/screenshots
 * exhibits a "reCAPTCHA" feature along with the provided 5 data fields.
 * has proper styling for error messages if any.
 * has an embedded and expandable [summernote][summernote] markdown editor.
